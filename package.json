@@ -1,6 +1,7 @@
 {
   "name": "react-photo-wall",
   "version": "0.1.0",
+  "homepage":"https://kashf.gitlab.io/assessment---react-photo-wall/",
   "private": true,
   "dependencies": {
     "react": "^16.4.0",
