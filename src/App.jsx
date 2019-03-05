@@ -7,13 +7,20 @@ const PHOTO_URL = "https://picsum.photos/200?photo=";   // concat with photo.id 
 // about various photos.
 const PHOTO_LIST_URL = "https://picsum.photos/list";
 // write a fetch request for the state
-// comp.getmount. is auto run when comp is added to the page. standard place
+// componentDidMount is auto run when comp is added to the page. standard practice
 // to put all of our fetch requests 
 
 class App extends Component {
   // 1. Declare a state object that will be used to track an array of photos
   state = {gallery : []   //don't need a constructor b/c no methods yet for this constructor
   }                                 // not going to manipulate the data.
+
+  // 2. Declare a life cycle method
+  // This life cycle method should:
+  // - will be called after the component is initially rendered
+  // - will fetch an array of photos
+  // - will add that array of photos to state once received
+
   componentDidMount(){
     fetch (PHOTO_LIST_URL)
     .then(res => res.json())
@@ -23,19 +30,13 @@ class App extends Component {
       this.setState({gallery: data})
     })
   }
-    // fetch request here 
-    // get all data after fetch finished 
-    // in final .then add this.setState({ overwrite gallery with data from fetch})
-      // always use this to update the state
+  // fetch request here 
+  // get all data after fetch finished 
+  // in final .then add this.setState({ overwrite gallery with data from fetch})
+  // always use this to update the state
 
-
-  componentWillUnmount(){
-  }
-  // 2. Declare a life cycle method
-  // This life cycle method should:
-  //  - will be called after the component is initially rendered
-  // - will fetch an array of photos
-  // - will add that array of photos to state once received
+  // componentWillUnmount(){
+  // }
 
   render() {
     const { gallery = [] } = this.state;
@@ -54,9 +55,9 @@ class App extends Component {
               * and for loops are not. You'll learn more about this soon! 
               */}
             {gallery.map( photo => 
-                <img alt={/* 3. Fill me in with the photo's filename */ ""}
-                     key={/* 4. Fill me in with the photo's id */ ""}
-                     src={/* 5. Fill me in with the photo's URL */ ""}    // for one photo. concat
+                <img alt={photo.filename}/* 3. Fill me in with the photo's filename */ 
+                     key={photo.id}/* 4. Fill me in with the photo's id */ 
+                     src={PHOTO_URL + photo.filename}    // f/* 5. Fill me in with the photo's URL for one photo. concat photo.id
                 />
             )}
         </div>
